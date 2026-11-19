@@ -1,0 +1,78 @@
+SHIELD DESIGNER for WARLORDS II                 SHLDEDIT.COM  v1.04
+=======================================================================
+
+Edit the heraldic shields of the eight sides (plus Neutral) and save them
+as a new shield set that Warlords II can use.
+
+The program looks like the game itself: it reads the marble screen
+(PICS\SCREEN0-3.PCK) and the game's fonts (TEXT.FNT, CHANCE17.FNT) from
+your Warlords II directory each time it starts.
+
+REQUIREMENTS
+  - 386 or better (same as Warlords II), VGA, a mouse driver (MOUSE.COM,
+    CTMOUSE.EXE, ...). DOSBox has one built in - click inside the DOSBox
+    window to capture the mouse (Ctrl+F10 releases it).
+  - about 480K of free conventional memory (Warlords II itself needs
+    580K, so if the game runs, this runs; more memory = more undo levels)
+
+INSTALL & RUN
+  1. Copy SHLDEDIT.COM into your Warlords II directory (where WAR2.BAT,
+     the PICS, SHIELD and TERRAIN0 folders are).
+  2. Type  SHLDEDIT  at the DOS prompt from that directory.
+
+THE SCREEN
+  Menu bar      Info  Shield  Edit  Sheet  Player  Tools  View
+                (click a title, then an item - or press, drag, release)
+  Big panel     the picture you are editing
+  Top right     palette (left click = L colour, right click = R colour)
+                and a preview of the chosen side - click a preview
+                picture to edit that part
+  Bottom right  tool buttons, undo/copy/paste/flip, zoom and scrolling,
+                Recolour and Copy Player
+  Bottom left   shield set, sheet, side, part, zoom and cursor position
+
+MENUS
+  Info    About Shield Designer, Keys and help (F1)
+  Shield  Load shield set (F3), Save shield set (F2), Quit (^Q)
+  Edit    Undo, Copy, Paste, Flip, Recolour (alt R), Copy player (alt C)
+  Sheet   Large shields, Capital shields, Army flags, Status bars
+  Player  Player 1 ... Player 8, Neutral (alt 1 - alt 9)
+  Tools   Pencil, Fill, Pick colour, Select, Mirror to copies, Grid
+  View    Whole sheet or one part of the side, Zoom in/out, Fit
+
+  Mirror to copies: the army flag stacks and the status bar contain the
+  same shield several times; painting one copy updates them all (dashed
+  blue boxes show the linked shield).
+  Recolour: change one colour to another for this side (all sheets), the
+  current view or the selection; "Swap both ways" exchanges them.
+  Copy Player: copies every part of one side onto another side; pick
+  the sides by their large shields.
+
+KEYS
+  B pencil  G fill  I pick colour  M select  X swap L/R colours
+  U or Ctrl+Z undo   Ctrl+C copy selection   Ctrl+V paste (click to place,
+  Shift+click to place several, Esc to stop)
+  + / - zoom (1x-24x)   0 fit to screen   arrow keys scroll when zoomed
+  F1 help   F2 save set   F3 load set   Ctrl+Q or F10 quit
+
+SAVING
+  Save asks for a name of 1-7 letters/digits and writes:
+     SHIELD\A<name>.PCK  SHIELD\S<name>.PCK  SHIELD\B<name>.PCK
+     SHIELD\<name>0.PCK ... <name>7.PCK      SHIELD\<name>.SHL
+  In Warlords II start a random game and choose "Shield: <name>".
+  Saving under the name of an existing set asks before overwriting it -
+  keep backups of the original sets if you plan to change them.
+
+TECHNICAL NOTES
+  The .PCK format: 6-byte header (version 1, width, height), then four
+  bit-planes, each LZ-compressed: a byte < 80h copies n+1 literal bytes;
+  a byte >= 80h starts a 16-bit negative offset followed by a count byte,
+  copying count+1 bytes from earlier in the same plane.
+  .FNT fonts are PCK glyph sheets; .FIN holds the glyph metrics.
+  The mouse pointer is drawn by the program itself; the driver is only
+  asked for position and buttons (reset after switching to 640x480).
+  SRC\ contains the C source (built with gcc -m16 into a tiny-model .COM).
+
+Shield Designer for Warlords II
+Made with love for the Warlords series by A. Pretty
+Shield Designer v1.04
